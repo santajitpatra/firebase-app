@@ -7,7 +7,7 @@ const putData = () => {
   set(ref(db, "users/santajt"), {
     id: "1",
     username: "Santajt Patra",
-    email: "meloke2334@introace.com",
+    email: "example@gmail.com",
   });
 };
 

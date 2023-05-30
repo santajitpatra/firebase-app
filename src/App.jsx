@@ -1,8 +1,8 @@
-
+import PutData from "./components/PutData";
 export default function App() {
   return (
     <div>
-      hi
+      <PutData />
     </div>
-  )
+  );
 }

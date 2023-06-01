@@ -1,18 +1,27 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { app } from "../../firebase";
-import { useState } from 'react'
-
+import { useState } from "react";
 
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 const SignUp = () => {
-  const [ email, setEmail ] = useState("");
-  const [ password, setPassword ] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const createUser = () => {
     createUserWithEmailAndPassword(auth, email, password).then(() =>
       alert("Successfully")
     );
+  };
+
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, googleProvider);
   };
 
   return (
@@ -42,6 +51,12 @@ const SignUp = () => {
         onClick={createUser}
       >
         SignUp
+      </button>
+      <button
+        className="bg-green-500 text-white w-44 h-10 rounded-md "
+        onClick={signInWithGoogle}
+      >
+        SignUp with Google
       </button>
     </div>
   );

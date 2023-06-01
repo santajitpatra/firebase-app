@@ -2,7 +2,7 @@ import PutData from "./components/PutData";
 import CreateUser from "./components/CreateUser";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-
+import CreateUserAndPutData from "./components/CreateUserAndPutData";
 
 export default function App() {
   return (
@@ -11,6 +11,7 @@ export default function App() {
       <CreateUser/>
       <SignUp/>
       <SignIn/>
+      <CreateUserAndPutData/>
     </div>
   );
 }

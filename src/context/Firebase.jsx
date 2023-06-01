@@ -1,8 +1,7 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, set, ref } from "firebase/database";
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlqEEIJcpZKDMaSjjRNGKygCk185VsLKA",
@@ -15,18 +14,23 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-const firebaseAuth = getAuth(firebaseApp )
-const database = getDatabase()
+const firebaseAuth = getAuth(firebaseApp);
+const database = getDatabase();
 
 const FirebaseContext = createContext(null);
 
+export const useFirebase = () => useContext(FirebaseContext);
+
 export const FirebaseProvider = (props) => {
-    const signupUserWithEmailAndPassword = (email, password) => {
-        return createUserWithEmailAndPassword(firebaseAuth, email, password)
-    }
-  return 
-  // eslint-disable-next-line no-unreachable
-  <FirebaseContext.Provider value={{ signupUserWithEmailAndPassword }} >
-    {props.children}
-  </FirebaseContext.Provider>;
+  const signUpUserWithEmailAndPassword = (email, password) => {
+    return createUserWithEmailAndPassword(firebaseAuth, email, password);
+  };
+  const putData = (key, data) => set(ref(database, key), data);
+  return (
+    <FirebaseContext.Provider
+      value={{ signUpUserWithEmailAndPassword, putData }}
+    >
+      {props.children}
+    </FirebaseContext.Provider>
+  );
 };

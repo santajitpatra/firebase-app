@@ -5,7 +5,9 @@ import {
   doc,
   getDoc,
   query,
-  where
+  where,
+  getDocs,
+  updateDoc,
 } from "firebase/firestore";
 import { app } from "../../firebase";
 const firestore = getFirestore(app);
@@ -36,8 +38,25 @@ export default function Database() {
     console.log("Document data:", snap.data());
   };
 
+  const getDocumentsByQuery = async () => {
+    const collectionRef = collection(firestore, "users");
+    const q = query(collectionRef, where("isMale", "==", true));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((data) => {
+      console.log(data.data());
+    });
+  };
+
+  const updateDocument = async () => {
+    const ref = doc(firestore, "cities", "UuYPKBEckjDwbJwiSg93");
+
+    await updateDoc(ref, {
+      name: "kolkata",
+    });
+  };
+
   return (
-    <div className="flex flex-col justify-center items-center p-10">
+    <div className="flex flex-col justify-center items-center p-10 space-y-8">
       <h2 className="text-orange-700 text-5xl font-bold mb-10">Database</h2>
       <button
         className="bg-orange-500 text-white w-32 h-10 rounded-md "
@@ -56,6 +75,18 @@ export default function Database() {
         onClick={getDocument}
       >
         Get Document
+      </button>
+      <button
+        className="bg-orange-500 text-white w-32 h-10 rounded-md "
+        onClick={getDocumentsByQuery}
+      >
+        Get Documents By Query
+      </button>
+      <button
+        className="bg-orange-500 text-white w-32 h-10 rounded-md "
+        onClick={updateDocument}
+      >
+        Documents Updata
       </button>
     </div>
   );

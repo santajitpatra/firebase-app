@@ -6,6 +6,7 @@ import CreateUserAndPutData from "./components/CreateUserAndPutData";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from "../firebase";
 import { useEffect, useState } from "react";
+import Database from "./components/Database";
 
 const auth = getAuth(app);
 
@@ -31,6 +32,7 @@ export default function App() {
         <SignUp />
         <SignIn />
         <CreateUserAndPutData />
+        <Database/>
       </div>
     );
   }

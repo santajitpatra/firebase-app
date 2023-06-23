@@ -7,6 +7,14 @@ export default function CreateUserAndPutData() {
   const [password, setPassword] = useState("");
 
   console.log("App started", firebase);
+
+  const putDataNew = () => {
+    firebase.putData("grandfather/father/child", { id: 1,
+    name: "grandfather",
+  age:21,
+})
+  }
+  
   return (
     <div>
       <h2>App</h2>
@@ -24,6 +32,8 @@ export default function CreateUserAndPutData() {
       />
       <button onClick={() => {firebase.signUpUserWithEmailAndPassword(email, password);
       firebase.putData("user/" + "santajitpatra" , {email, password})}} >Sign up</button>
+
+            <button onClick={putDataNew} >Trigger</button>
     </div>
   );
 }

@@ -6,8 +6,6 @@ export default function CreateUserAndPutData() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log("App started", firebase);
-
   const putDataNew = () => {
     firebase.putData("grandfather/father/child", { id: 1,
     name: "grandfather",

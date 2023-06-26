@@ -4,9 +4,10 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import CreateUserAndPutData from "./components/CreateUserAndPutData";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { app } from "../firebase";
+import { app, messaging } from "../firebase";
 import { useEffect, useState } from "react";
 import Database from "./components/Database";
+import {  getToken } from "firebase/messaging";
 
 const auth = getAuth(app);
 
@@ -18,10 +19,26 @@ export default function App() {
       if (user) {
         setUser(user);
       } else {
-        console.log("you are logged out");
         setUser(null);
       }
     });
+  }, []);
+
+   async function  requestPermission() {
+   const permission = Notification.requestPermission()
+      if (permission === "granted") {
+        const token = await getToken(messaging, {
+          vapidKey:
+            "BGuP8PLwxcrbHZYQ6278fJ-E1AzXZoYeiYhyu38NU11srZK05OCMzh-hLFq465_efWSka4kYkrffFpMNAR6dZrw",
+        });
+        console.log("Token:", token);
+      } else if (permission === "denied") {
+        alert("Notification permission denied.");
+      }
+  }
+
+  useEffect(() => {
+    requestPermission();
   }, []);
 
   if (user === null) {
@@ -32,12 +49,10 @@ export default function App() {
         <SignUp />
         <SignIn />
         <CreateUserAndPutData />
-        <Database/>
+        <Database />
       </div>
     );
   }
-
-
 
   return (
     <div>

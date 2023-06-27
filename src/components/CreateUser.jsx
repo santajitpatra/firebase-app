@@ -10,7 +10,7 @@ export default function CreateUser() {
     );
   };
   return (
-    <div className="flex flex-col justify-center items-center p-10">
+    <div className="flex flex-col justify-center items-center p-10 bg-gray-50">
       <h2 className="text-orange-700 text-5xl font-bold mb-10">
         Create User Firebase
       </h2>

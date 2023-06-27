@@ -1,28 +1,15 @@
-import PutData from "./components/PutData";
-import CreateUser from "./components/CreateUser";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
-import CreateUserAndPutData from "./components/CreateUserAndPutData";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { app, messaging } from "../firebase";
-import { useEffect, useState } from "react";
-import Database from "./components/Database";
+import {  messaging } from "../firebase";
+import { useEffect } from "react";
 import {  getToken } from "firebase/messaging";
+import Lesson from "./pages/Lesson";
+import Home from "./pages/Home";
+import { Route, Routes } from "react-router-dom";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Navbar from "./components/Navbar";
 
-const auth = getAuth(app);
 
 export default function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-  }, []);
 
    async function  requestPermission() {
    const permission = Notification.requestPermission()
@@ -41,35 +28,18 @@ export default function App() {
     requestPermission();
   }, []);
 
-  if (user === null) {
     return (
       <div>
-        <PutData />
-        <CreateUser />
-        <SignUp />
-        <SignIn />
-        <CreateUserAndPutData />
-        <Database />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/lesson" element={<Lesson />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="*" element={<h1>404</h1>} />
+        </Routes>
       </div>
     );
-  }
 
-  return (
-    <div>
-      <h2>Hello {user.email}</h2>
-      <button onClick={() => signOut(auth)}>Logout</button>
-    </div>
-  );
 
-  // return (
-  //   <div>
-  //     <PutData />
-  //     <CreateUser />
-  //     <SignUp />
-  //     {/* <h2>Hello {user.email}</h2> */}
-  //     {/* <button onClick={() => signOut(auth)}>Logout</button> */}
-  //     <SignIn />
-  //     <CreateUserAndPutData />
-  //   </div>
-  // );
 }

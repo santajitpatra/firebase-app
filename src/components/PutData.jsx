@@ -13,7 +13,7 @@ const putData = () => {
 
 export default function PutData() {
   return (
-    <div className="flex flex-col justify-center items-center p-10">
+    <div className="flex flex-col justify-center items-center p-10 bg-gray-200">
       <h2 className="text-blue-700 text-5xl font-bold mb-10">
         React Firebase 1!
       </h2>

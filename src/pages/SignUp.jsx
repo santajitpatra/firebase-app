@@ -26,6 +26,7 @@ const SignUp = () => {
 
   return (
     <div className="flex flex-col w-full max-w-md mx-auto justify-center items-center p-10 space-y-10">
+
       <h2 className="text-green-700 text-5xl font-bold mb-10">Create SingUp</h2>
 
       <label className="block mb-1">Email</label>

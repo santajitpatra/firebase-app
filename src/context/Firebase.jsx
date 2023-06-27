@@ -44,8 +44,8 @@ export const FirebaseProvider = (props) => {
     <FirebaseContext.Provider
       value={{ signUpUserWithEmailAndPassword, putData }}
     >
-      <h3>name is {name}</h3>
       {props.children}
+      <h3>name is {name}</h3>
     </FirebaseContext.Provider>
   );
 };

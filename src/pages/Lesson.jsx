@@ -1,8 +1,18 @@
+import CreateUser from '../components/CreateUser';
+import CreateUserAndPutData from '../components/CreateUserAndPutData';
+import Database from '../components/Database';
+import PutData from '../components/PutData';
 
-export default function Lesson() {
+
+const Lesson = () => {
   return (
     <div>
-      okk
+      <PutData />
+      <CreateUser />
+      <CreateUserAndPutData />
+      <Database />
     </div>
-  )
+  );
 }
+
+export default Lesson

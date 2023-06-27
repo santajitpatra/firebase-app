@@ -56,38 +56,41 @@ export default function Database() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center p-10 space-y-8">
+    <div className="flex flex-col justify-center items-center p-10 space-y-8 bg-gray-50">
       <h2 className="text-orange-700 text-5xl font-bold mb-10">Database</h2>
-      <button
-        className="bg-orange-500 text-white w-32 h-10 rounded-md "
-        onClick={writeData}
-      >
-        Put Data
-      </button>
-      <button
-        className="bg-orange-500 text-white w-32 h-10 rounded-md "
-        onClick={makeSubCollection}
-      >
-        Put Sub Data
-      </button>
-      <button
-        className="bg-orange-500 text-white w-32 h-10 rounded-md "
-        onClick={getDocument}
-      >
-        Get Document
-      </button>
-      <button
-        className="bg-orange-500 text-white w-32 h-10 rounded-md "
-        onClick={getDocumentsByQuery}
-      >
-        Get Documents By Query
-      </button>
-      <button
-        className="bg-orange-500 text-white w-32 h-10 rounded-md "
-        onClick={updateDocument}
-      >
-        Documents Updata
-      </button>
+
+      <div className="flex flex-row space-x-10">
+        <button
+          className="bg-orange-500 text-white w-auto px-10 h-10 rounded-md "
+          onClick={writeData}
+        >
+          Put Data
+        </button>
+        <button
+          className="bg-orange-500 text-white w-auto px-10 h-10 rounded-md "
+          onClick={makeSubCollection}
+        >
+          Put Sub Data
+        </button>
+        <button
+          className="bg-orange-500 text-white w-auto px-10 h-10 rounded-md "
+          onClick={getDocument}
+        >
+          Get Document
+        </button>
+        <button
+          className="bg-orange-500 text-white w-auto px-10 h-10 rounded-md "
+          onClick={getDocumentsByQuery}
+        >
+          Get Documents By Query
+        </button>
+        <button
+          className="bg-orange-500 text-white w-auto px-10 h-10 rounded-md "
+          onClick={updateDocument}
+        >
+          Documents Updata
+        </button>{" "}
+      </div>
     </div>
   );
 }
